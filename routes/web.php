@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Admin\Controllers\TechnologyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController; //remenber to add!
 use App\Http\Controllers\Admin\SkillController; //remenber to add!
@@ -35,6 +36,9 @@ Route::middleware(['auth', 'verified'])
         ]);
         Route::resource('skills', SkillController::class)->parameters([
             'skills' => 'skill:slug' // added slug parameter for URL
+        ])->except(['show']);
+        Route::resource('technologies', TechnologyController::class)->parameters([
+            'technologies' => 'techology:slug' // added slug parameter for URL
         ])->except(['show']);
     });
 
