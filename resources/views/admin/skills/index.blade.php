@@ -5,22 +5,17 @@
     <div class="row my-5">
         <table class="table table-hover table-striped table-bordered">
             <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Type</th>
-                <th scope="col">Actions</th>
-            </tr>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Actions</th>
+                </tr>
             </thead>
             <tbody>
                 @foreach ($skills as $skill)
                     <tr>
                         <th>{{$skill->id}}</th>
                         <td>{{$skill->type}}</td>
-                            @foreach ($projects as $project)
-                                @if ($project->skill_id == $skill->id)
-                                    <span>{{$project->title}}</span>
-                                @endif
-                            @endforeach
                         </td>
                         <td class="d-flex">
                             <div class="me-2 my-2">
