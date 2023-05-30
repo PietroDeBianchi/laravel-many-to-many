@@ -93,6 +93,7 @@ class ProjectController extends Controller
     {
         $validated_data = $request->validated();
         $validated_data['slug'] = Str::slug($request['title'], '-');
+        $project->technologies()->sync($request->technologies);
         $project->update($validated_data);
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }

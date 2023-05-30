@@ -40,7 +40,7 @@
         <div class="mb-3">
             @foreach ($technologies as $technology)
                 <div class="pe-3 d-inline">
-                    @if ($errrors->any())
+                    @if ($errors->any())
                         <input id="tech_{{$technology->id}}" @if (in_array($technology->id, old('technologies', []))) checked @endif type="checkbox" name="technologies[]" value="{{$technology->id}}">
                     @else
                         <input id="tech_{{$technology->id}}" @if ($project->technologies->contains($technology->id)) checked @endif type="checkbox" name="technologies[]" value="{{$technology->id}}">
@@ -48,11 +48,11 @@
                     <label for="tech_{{$technology->id}}" class="form-label">{{$technology->type}}</label>
                 </div>
             @endforeach
-            {{-- @error('technology')
+            @error('technology')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
-            @enderror --}}
+            @enderror
         </div>
 
         <div class="mb-3">
