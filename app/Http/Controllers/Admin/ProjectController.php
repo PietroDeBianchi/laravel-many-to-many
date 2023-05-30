@@ -7,7 +7,7 @@ use App\Http\Requests\StoreProjectRequest; //remenber to add!
 use App\Http\Requests\UpdateProjectRequest; //remenber to add!
 use App\Models\Project;
 use App\Models\Skill;
-use Illuminate\Http\Request;
+use App\Models\Technology;
 use Illuminate\Support\Str; // remenber to add!
 
 class ProjectController extends Controller
@@ -31,7 +31,8 @@ class ProjectController extends Controller
     public function create()
     {
         $skills = Skill::all();
-        return view('admin.projects.create', compact('skills'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('skills', 'technologies'));
     }
 
     /**
@@ -40,13 +41,20 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request) // check App/Requests/StroreProjectRequest
+    public function store(StoreProjectRequest $request)
     {
         $validated_data = $request->validated();
         $validated_data['slug'] = Str::slug($request['title'], '-');
+
         $newProject = new Project();
         $newProject->fill($validated_data);
         $newProject->save();
+
+        //is_array => $request->technologies is an array of technology IDs
+        if (is_array($request->technologies)) {
+            $newProject->technologies()->attach($request->technologies);
+        }
+
         return redirect()->route('admin.projects.show', ['project' => $newProject->slug]);
     }
 
@@ -70,7 +78,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $skills = Skill::all();
-        return view('admin.projects.edit', compact('project', 'skills'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'skills', 'technologies'));
     }
 
     /**

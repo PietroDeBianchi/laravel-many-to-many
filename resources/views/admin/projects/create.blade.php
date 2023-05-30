@@ -35,6 +35,19 @@
             @enderror
         </div>
         <div class="mb-3">
+            @foreach ($technologies as $technology)
+                <div class="pe-3 d-inline">
+                    <input id="tech_{{$technology->id}}" @if (in_array($technology->id, old('technologies', []))) @endif type="checkbox" name="technologies[]" value="{{$technology->id}}">
+                    <label for="tech_{{$technology->id}}" class="form-label">{{$technology->type}}</label>
+                </div>
+            @endforeach
+            {{-- @error('technology')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror --}}
+        </div>
+        <div class="mb-3">
             <label for="skill_id" class="form-label">Skill</label>
             <select class="form-select" name="skill_id" id="skil_id">
                     <option value="#" @selected(old('skill_id') == '')>NULL</option>

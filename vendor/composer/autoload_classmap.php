@@ -159,6 +159,7 @@ return array(
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\ProjectSeeder' => $baseDir . '/database/seeders/ProjectSeeder.php',
     'Database\\Seeders\\SkillSeeder' => $baseDir . '/database/seeders/SkillSeeder.php',
+    'Database\\Seeders\\TechnologySeeder' => $baseDir . '/database/seeders/TechnologySeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
     'DeepCopy\\Exception\\PropertyException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',

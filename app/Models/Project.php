@@ -23,4 +23,9 @@ class Project extends Model
     {
         return $this->belongsTo(Skill::class);
     }
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
+    }
 }
